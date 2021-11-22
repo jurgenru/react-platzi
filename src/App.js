@@ -18,7 +18,7 @@ const defaultTodos = [
   { text: "Cortar cebolla", completed: true },
   { text: "Termina la universidad", completed: false },
   { text: "Cortarme el pelo", completed: false },
-  { text: "Estudia react", completed: false },
+  { text: "Estudia react", completed: true },
   { text: "Aprender react", completed: false },
 ];
 
@@ -41,6 +41,24 @@ function App() {
     });
   }
 
+  const completeTodo = (text) => {
+    const todoIndex = todos.findIndex((todo) => todo.text === text);
+    const newTodos = [...todos];
+    newTodos[todoIndex].completed = true;
+    setTodos(newTodos);
+    /*todos[todoIndex] = {
+      text: todos[todoIndex].text,
+      completed: true 
+    };*/
+  };
+
+  const deleteTodo = (text) => {
+    const todoIndex = todos.findIndex((todo) => todo.text === text);
+    const newTodos = [...todos];
+    newTodos.splice(todoIndex, 1);
+    setTodos(newTodos);
+  };
+
   return (
     <>
       <TodoCounter total={totalTodos} completed={completedTodos} />
@@ -51,6 +69,8 @@ function App() {
             text={todo.text}
             key={todo.text}
             completed={todo.completed}
+            onComplete={() => completeTodo(todo.text)}
+            onDelete={() => deleteTodo(todo.text)}
           />
         ))}
       </TodoList>

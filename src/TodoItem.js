@@ -2,18 +2,18 @@ import React from "react";
 import "./TodoItem.css";
 
 function TodoItem(props) {
-  const onComplete = () => {
-    alert("Ya completaste el TODO " + props.text);
-  };
+  // const onComplete = () => {
+  //   alert("Ya completaste el TODO " + props.text);
+  // };
 
-  const onDelete = () => {
-    alert("Eliminaste el TODO " + props.text);
-  };
+  // const onDelete = () => {
+  //   alert("Eliminaste el TODO " + props.text);
+  // };
 
   return (
     <li className="TodoItem">
       <span
-        onClick={onComplete}
+        onClick={props.onComplete}
         className={`Icon Icon-check ${props.completed && "Icon-check--active"}`}
       >
         √
@@ -21,7 +21,7 @@ function TodoItem(props) {
       <p className={`TodoItem-p ${props.completed && "TodoItem-p--complete"}`}>
         {props.text}
       </p>
-      <span onClick={onDelete} className="Icon Icon-delete">
+      <span onClick={props.onDelete} className="Icon Icon-delete">
         X
       </span>
     </li>
