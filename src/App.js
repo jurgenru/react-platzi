@@ -15,7 +15,7 @@ contenido*/
 
 //creamos un array con objetos dentro
 const todos = [
-  { text: "Cortar cebolla", completed: false },
+  { text: "Cortar cebolla", completed: true },
   { text: "Termina la universidad", completed: false },
   { text: "Cortarme el pelo", completed: false },
 ];
@@ -25,10 +25,13 @@ function App() {
     <>
       <TodoCounter />
       <TodoSearch />
-
       <TodoList>
         {todos.map((todo) => (
-          <TodoItem text={todo.text} key={todo.text}/>
+          <TodoItem
+            text={todo.text}
+            key={todo.text}
+            completed={todo.completed}
+          />
         ))}
       </TodoList>
       <CreateTodoButton />
