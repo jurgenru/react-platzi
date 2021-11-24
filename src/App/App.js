@@ -20,7 +20,12 @@ contenido*/
 // ];
 
 function App() {
-  const [todos, saveTodos] = useLocalStorage("TODOS_V1", []);
+  const {
+    item: todos,
+    saveItem: saveTodos,
+    loading,
+    error,
+  } = useLocalStorage("TODOS_V1", []);
 
   const [searchValue, setSearchValue] = React.useState("");
 
@@ -57,9 +62,19 @@ function App() {
     saveTodos(newTodos);
   };
 
+  // console.log("Render antes del use effect");
+
+  // React.useEffect(() => {
+  //   console.log("use effect");
+  // }, [totalTodos]);
+
+  // console.log("Render despues del use effect");
+
   return (
     <AppUI
+      loading={loading}
       totalTodos={totalTodos}
+      error={error}
       completedTodos={completedTodos}
       searchValue={searchValue}
       setSearchValue={setSearchValue}

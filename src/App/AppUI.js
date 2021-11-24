@@ -6,6 +6,8 @@ import { TodoList } from "../components/TodoList/TodoList";
 import { TodoItem } from "../components/TodoItem/TodoItem";
 
 function AppUI({
+  loading,
+  error,
   totalTodos,
   completedTodos,
   searchValue,
@@ -19,6 +21,9 @@ function AppUI({
       <TodoCounter total={totalTodos} completed={completedTodos} />
       <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
       <TodoList>
+        {error && <p>DESESPERATE HUBO UN ERROR</p>}
+        {loading && <p>Estamos cargando no desesperes...</p>}
+        {(!loading && !searchedTodo.length) && <p>Crea tu primer TODO...</p>}
         {searchedTodo.map((todo) => (
           <TodoItem
             text={todo.text}
